@@ -1,4 +1,4 @@
-import Header from '../../common/header/Header';  
+import Header from '../../common/header/Header';
 import './Home.css'
 import React, { useEffect, useState } from "react";
 import GridList from "@material-ui/core/GridList";
@@ -117,11 +117,10 @@ function Home(props) {
   }, []);
 
   const getFilteredMovies = () => {
-    const queryParams = `title=${filters.movieName}&start_date=${
-      filters.releaseDateStart
-    }&end_date=${filters.releaseDateEnd}&genre=${filters.genre.join(
-      ", "
-    )}&artists=${filters.artist.join(", ")}`;
+    const queryParams = `title=${filters.movieName}&start_date=${filters.releaseDateStart
+      }&end_date=${filters.releaseDateEnd}&genre=${filters.genre.join(
+        ", "
+      )}&artists=${filters.artist.join(", ")}`;
 
     fetch(props.baseUrl + `movies?${queryParams}`, {
       method: "GET",

@@ -80,7 +80,7 @@ function Header(props) {
                             </Button>
                         )}
 
-                         {!loginStatus && (
+                        {!loginStatus && (
                             <Button
                                 variant="contained"
                                 className="btnLogin"
@@ -99,13 +99,11 @@ function Header(props) {
                             >
                                 Logout
                             </Button>
-                        )} 
-
-                   
-
+                        )}
                 {/* {!loginStatus && <Button variant="contained" className="btnLogin" onClick={() => { openModal() }} >Login</Button>}
                  {loginStatus && <Button variant="contained" className="btnLogin" onClick={handleLogout}>Logout</Button>} */}
- </div>
+                    </div>
+                    
                     <Modal
                         isOpen={modalIsOpen}
                         onRequestClose={closeModal}
