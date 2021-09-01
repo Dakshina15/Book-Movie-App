@@ -28,9 +28,8 @@ function Register(props) {
             },
             body: JSON.stringify(data),
         }).then((response) =>  
-            response.json())
-            .then((data) => {
-              //setBookingId(data.reference_number);
+           response.json())
+           .then((data) => {
               const userDetails = {data, loginStatus:true}
                 localStorage.setItem("userDetails", JSON.stringify(userDetails))
                 props.setLoginStatus(true)
@@ -66,12 +65,9 @@ function Register(props) {
                 value={contactno}
                 required /><br /><br /><br /><br /> 
             </form>
-            <Button onClick={Register} variant="contained" color="primary" >
-                Register
-            </Button>
+            <Button onClick={Register} variant="contained" color="primary" >Register</Button>
         </div>
     )
 }
-
 export default Register 
 

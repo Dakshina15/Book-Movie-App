@@ -110,7 +110,7 @@ const BookShow = (props) => {
     for (let show of originalShows) {
       if (
         show.theatre.city === location &&
-        show.theatre.name === theatre &&
+        show.theatre.name === theatre && 
         show.language === event.target.value
       ) {
         newShowDates.push({ id: show.show_timing, showDate: show.show_timing });

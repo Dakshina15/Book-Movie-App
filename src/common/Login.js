@@ -6,7 +6,12 @@ import React, {useState} from 'react'
 function Login(props) {
   const [email, setEmail] = useState("")
   const [Password, setPassword] = useState("")
-  
+//   const initialLoginStatus = localStorage.getItem("userDetails") ? true : false;
+
+//   const [isLogin, setIsLogin] = useState(initialLoginStatus);
+//   const [loginModalShow, setLoginModalShow] = useState(false);
+
+
   function Login(){
        
       const authorization=window.btoa(email+":"+Password)
@@ -28,14 +33,21 @@ function Login(props) {
               props.setIsOpen(false)
           });      
   }
+
   
     return (
           <div className="center">
-              <form >
+              <form>
                   <TextField label="Username" required 
                   onChange={(e)=>setEmail(e.target.value)}
                   type="text" 
-                  value={email} />
+                  value={email}
+                  name="userName"
+                  error
+                     id=""
+                    helperText="required"
+
+                    />
                   <br />
 
                   <TextField label="Password" required 
@@ -46,6 +58,7 @@ function Login(props) {
               </form>
 
               <Button onClick={Login} variant="contained" color="primary" >Login</Button> 
+            
           </div> 
       )
   }
