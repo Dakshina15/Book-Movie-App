@@ -4,12 +4,29 @@ import './LoginRegister.css';
 import React, { useState } from 'react'
 
 function Login(props) {
-    const [email, setEmail] = useState("")
-    const [Password, setPassword] = useState("")
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
+    const [validationError, setvalidationError] = useState({
+        email: false,
+        password: false,
+      });
 
     function Login() {
+        const validationErrorValues = { ...validationError }; //e:false, p:false
 
-        const authorization = window.btoa(email + ":" + Password)
+        if (email === "") {
+          validationErrorValues.email = true; //e:true, p:false
+        }
+        if (password === "") {
+          validationErrorValues.password = true; //e:true, p:true
+        }
+        if (validationErrorValues.email || validationErrorValues.password) {
+          setvalidationError(validationErrorValues);
+          return;
+        }
+
+        const authorization = window.btoa(email + ":" + password)
         const headers = {
             "Accept": "application/json;charset=UTF-8",
             "authorization": "Basic " + authorization
@@ -29,23 +46,45 @@ function Login(props) {
             });
     }
 
+    function resetValidationError(fieldName) {
+        const validationErrorValues = { ...validationError };
+        validationErrorValues[fieldName] = false;
+        setvalidationError(validationErrorValues);
+      }
 
     return (
         <div className="center">
             <form>
-                <TextField label="Username" required
-                    onChange={(e) => setEmail(e.target.value)}
-                    type="text"
-                    value={email}
-                />
-                <br />
+            <TextField
+          required
+          label="Email"
+          onChange={(e) => {
+            setEmail(e.target.value);
+            resetValidationError("email");
+          }}
+          error={validationError.email}
+          helperText={validationError.email ? "Required" : ""}
+          value={email}
+        />
+        <br />
 
-                <TextField label="Password" required
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={Password}
-                    type="password" />
-                <br /><br /><br />
-            </form>
+        <TextField
+          type="password"
+          label="Password"
+          required
+          onChange={(e) => {
+            setPassword(e.target.value);
+            resetValidationError("password");
+          }}
+          error={validationError.password}
+          helperText={validationError.password ? "Required" : ""}
+          value={password}
+        />
+        <br />
+        <br />
+        <br />
+      </form>
+
             <Button onClick={Login} variant="contained" color="primary" >Login</Button>
         </div>
     )
